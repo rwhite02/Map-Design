@@ -9,4 +9,6 @@ The second map that I created was used by downloading and importing data from th
 ![](/assets/crimesmap.png)
 
 The link to my webmap is below, can also be found at rwhite02.github.io/Map-Design
+
+
 [webmap-link](https://rwhite02.github.io/Map-Design/)

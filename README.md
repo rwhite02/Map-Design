@@ -4,9 +4,18 @@ The first map that I created on MapBox and then connected with on QGIS was a bas
 
 ![](/assets/basemap.png)
 
-The second map that I created was used by downloading and importing data from the City of Seattle Open Data Portal. I filtered a dataset that contains crime data in Seattle from 2008-Present so that it would include just crimes recorded so far in 2023. I used a brighter theme for this map to make it easier to visualize the crime locations that I mapped since they are represented by black dots. This is my group's final project theme so I decided to use some of the data that we will be using. This map can be seen below.
+The second map that I created was used by downloading and importing data from the City of Seattle Open Data Portal. I filtered a dataset that contains crime data in Seattle from 2008-Present so that it would include just crimes recorded so far in 2023. I used a darker background so that the heatmap aspects would be more presentational. An image of this map is below.
 
 ![](/assets/crimesmap.png)
+
+The third map that I created was produced on QGIS by layering the basemap and the heatmap on top of each other to produce an effective visualization that shows how crime is distributed throughout the City of Seattle. An image of this map is below.
+
+![](/assets/base_and_crime.png)
+
+
+
+
+
 
 The link to my webmap is below, can also be found at rwhite02.github.io/Map-Design
 

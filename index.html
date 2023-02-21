@@ -78,7 +78,7 @@
         let map = new mapboxgl.Map({
             container: 'map', 
             style: 'mapbox://styles/mapbox/dark-v10',
-            minZoom: 10,
+            minZoom: 8,
             maxZoom: 14, 
             center: [-122.2559435, 47.6002614] 
         });
@@ -103,13 +103,20 @@
                 'attribution': 'Crime statistics from so far in 2023, pulled up City of Seattle Open Data Portal</a>'
             });
 
+            map.addSource('base_crimes', {
+                'type': 'raster',
+                'tiles': [
+                    'assets/base_crimes/{z}/{x}/{y}.png'
+                ],
+                'tileSize': 256,
+                'attribution': 'Basemap and crime locations together</a>'
+            });
+
             map.addLayer({
                 'id': 'base',
                 'type': 'raster',
                 'layout': {
                     // 'visibility': 'none'
-        	            // Uncomment the line above will hide this map layer at first.
-        	            // This will be useful when you have multiple layers added to your map.
                 },
                 'source': 'basemap'
             });
@@ -119,10 +126,17 @@
                 'type': 'raster',
                 'layout': {
                     // 'visibility': 'none'
-                        // Uncomment the line above will hide this map layer at first.
-                        // This will be useful when you have multiple layers added to your map.
                 },
                 'source': 'crimes'
+            });
+
+            map.addLayer({
+                'id': 'basemap and crime',
+                'type': 'raster',
+                'layout': {
+                    // 'visibility: 'none'
+                },
+                'source': 'base_crimes'
             });
         });
 
@@ -130,12 +144,12 @@
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('base') || !map.getLayer('crime')) {
+            if (!map.getLayer('base') || !map.getLayer('crime') || !map.getLayer('basemap and crime')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['base', 'crime'];
+            const toggleableLayerIds = ['base', 'crime', 'basemap and crime'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {

@@ -78,7 +78,7 @@
         let map = new mapboxgl.Map({
             container: 'map', 
             style: 'mapbox://styles/mapbox/dark-v10',
-            minZoom: 8,
+            minZoom: 10,
             maxZoom: 14, 
             center: [-122.2559435, 47.6002614] 
         });
@@ -122,37 +122,37 @@
             });
 
             map.addLayer({
-                'id': 'base',
+                'id': 'Basemap',
                 'type': 'raster',
                 'layout': {
-                    // 'visibility': 'none'
+                    'visibility': 'none'
                 },
                 'source': 'basemap'
             });
 
             map.addLayer({
-                'id': 'crime',
+                'id': 'Crime Hotspots',
                 'type': 'raster',
                 'layout': {
-                    // 'visibility': 'none'
+                    'visibility': 'none'
                 },
                 'source': 'crimes'
             });
 
             map.addLayer({
-                'id': 'basemap and crime',
+                'id': 'Basemap and Crime',
                 'type': 'raster',
                 'layout': {
-                    // 'visibility: 'none'
+                    'visibility': 'none'
                 },
                 'source': 'base_crimes'
             });
 
             map.addLayer({
-                'id': 'Place of interest themed',
+                'id': 'Place of Interest Theme',
                 'type': 'raster',
                 'layout': {
-                    // 'visibility': 'none'
+                    'visibility': 'none'
                 },
                 'source': 'themed'
             });
@@ -161,13 +161,13 @@
 
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
-            // If these two layers were not added to the map, abort
-            if (!map.getLayer('base') || !map.getLayer('crime') || !map.getLayer('basemap and crime') || !map.getLayer('Place of interest themed')) {
+            // If these four layers were not added to the map, abort
+            if (!map.getLayer('Basemap') || !map.getLayer('Crime Hotspots') || !map.getLayer('Basemap and Crime') || !map.getLayer('Place of Interest Theme')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['base', 'crime', 'basemap and crime', 'Place of interest themed'];
+            const toggleableLayerIds = ['Basemap', 'Crime Hotspots', 'Basemap and Crime', 'Place of Interest Theme'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {

@@ -14,7 +14,7 @@ The third map that I created was produced on QGIS by layering the basemap and th
 
 The fourth map was created to show places of interest such as hospitals, police stations, public transit stations, etc. so that we could see potential trends in where the most crime happens. An image of this map is below.
 
-![](/assets/themed.png)
+![](/assets/theme_map.png)
 
 
 

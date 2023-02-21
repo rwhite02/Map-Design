@@ -76,18 +76,19 @@
         mapboxgl.accessToken =
             'pk.eyJ1IjoicnB3aGl0ZTAyIiwiYSI6ImNsZWM3dG83MTFncjgzdWx1bmJiMzh0dmQifQ.RU5FJK4TLgfCioPynoLIrw';
         let map = new mapboxgl.Map({
-            container: 'map', // container ID
+            container: 'map', 
             style: 'mapbox://styles/mapbox/dark-v10',
-            zoom: 12, // starting zoom
-            center: [-122.2559435, 47.6002614] // starting center
+            minZoom: 10,
+            maxZoom: 14, 
+            center: [-122.2559435, 47.6002614] 
         });
 
-        map.on('load', () => { //simplifying the function statement: arrow with brackets to define a function
+        map.on('load', () => { 
 
             map.addSource('basemap', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/Basemap/{5}/{-13617281}/{6042627}.png'
+                    'assets/Basemap/{z}/{x}/{y}.png'
                 ],
                 'tileSize': 256,
                 'attribution': 'Basemap from MapBox, modified by Ronan White</a>'
@@ -96,7 +97,7 @@
             map.addSource('crimes', {
                 'type': 'raster',
                 'tiles': [
-                    'assets/crimes/{5}/{-13617281}/{6042627}.png'
+                    'assets/crimes/{z}/{x}/{y}.png'
                 ],
                 'tileSize': 256,
                 'attribution': 'Crime statistics from so far in 2023, pulled up City of Seattle Open Data Portal</a>'
@@ -116,6 +117,11 @@
             map.addLayer({
                 'id': 'crime',
                 'type': 'raster',
+                'layout': {
+                    // 'visibility': 'none'
+                        // Uncomment the line above will hide this map layer at first.
+                        // This will be useful when you have multiple layers added to your map.
+                },
                 'source': 'crimes'
             });
         });

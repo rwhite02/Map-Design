@@ -112,6 +112,15 @@
                 'attribution': 'Basemap and crime locations together</a>'
             });
 
+            map.addSource('themed', {
+                'type': 'raster',
+                'tiles': [
+                    'assets/themed/{z}/{x}/{y}.png'
+                ],
+                'tileSize': 256,
+                'attribution': 'Themed map that highlights potential reasons for high crime</a>'
+            });
+
             map.addLayer({
                 'id': 'base',
                 'type': 'raster',
@@ -138,18 +147,27 @@
                 },
                 'source': 'base_crimes'
             });
+
+            map.addLayer({
+                'id': 'Place of interest themed',
+                'type': 'raster',
+                'layout': {
+                    // 'visibility': 'none'
+                },
+                'source': 'themed'
+            });
         });
 
 
         // After the last frame rendered before the map enters an "idle" state.
         map.on('idle', () => {
             // If these two layers were not added to the map, abort
-            if (!map.getLayer('base') || !map.getLayer('crime') || !map.getLayer('basemap and crime')) {
+            if (!map.getLayer('base') || !map.getLayer('crime') || !map.getLayer('basemap and crime') || !map.getLayer('Place of interest themed')) {
                 return;
             }
 
             // Enumerate ids of the layers.
-            const toggleableLayerIds = ['base', 'crime', 'basemap and crime'];
+            const toggleableLayerIds = ['base', 'crime', 'basemap and crime', 'Place of interest themed'];
 
             // Set up the corresponding toggle button for each layer.
             for (const id of toggleableLayerIds) {
